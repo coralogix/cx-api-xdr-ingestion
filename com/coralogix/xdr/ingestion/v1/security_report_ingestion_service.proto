@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.coralogix.xdr.ingestion.v1;
+
+import "com/coralogix/xdr/ingestion/v1/audit_log.proto";
+import "com/coralogix/xdr/ingestion/v1/security_report.proto";
+
+import "google/api/annotations.proto";
+
+service SecurityReportIngestionService {
+  rpc PostSecurityReport(PostSecurityReportRequest) returns (PostSecurityReportResponse) {
+    option (audit_log_description).description = "Endpoints to consume SecurityReports";
+    option (google.api.http) = {
+      post: "/xdr/v1/security_report"
+      body: "security_report"
+    };
+  }
+}
+
+message PostSecurityReportRequest {
+  SecurityReport security_report = 1;
+}
+
+message PostSecurityReportResponse {}
