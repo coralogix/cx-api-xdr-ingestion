@@ -31,6 +31,7 @@ message SecurityReport{
     google.protobuf.StringValue item_type = 7; // can be moved to the backoffice later
     Result result = 8;
     optional google.protobuf.Struct additional_data = 9;
+    google.protobuf.StringValue execution_id = 10;
   }
 
   Context context = 1;
