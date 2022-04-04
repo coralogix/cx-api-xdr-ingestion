@@ -9,10 +9,14 @@ import "google/protobuf/timestamp.proto";
 message SecurityReport{
 
   message Context {
-    google.protobuf.StringValue private_key = 1;
+    optional google.protobuf.StringValue private_key = 1;
     google.protobuf.StringValue application_name = 2;
     google.protobuf.StringValue subsystem_name = 3;
     google.protobuf.StringValue computer_name = 4;
+    
+    optional google.protobuf.StringValue provider = 5;
+    optional google.protobuf.StringValue service = 6;
+    optional google.protobuf.StringValue execution_id = 10;
   }
 
   message TestResult{
@@ -22,8 +26,8 @@ message SecurityReport{
       TEST_FAILED = 1;
     }
 
-    google.protobuf.StringValue provider = 1; // GCP, AWS, Github, Azure
-    google.protobuf.StringValue service = 2; // S3 Bucket, SNS, Repository, etc
+    optional google.protobuf.StringValue provider = 1; // GCP, AWS, Github, Azure
+    optional google.protobuf.StringValue service = 2; // S3 Bucket, SNS, Repository, etc
     google.protobuf.StringValue name = 3; // name of the test
     google.protobuf.Timestamp start_time = 4;
     google.protobuf.Timestamp end_time = 5; // when it was finished
@@ -31,7 +35,7 @@ message SecurityReport{
     google.protobuf.StringValue item_type = 7; // can be moved to the backoffice later
     Result result = 8;
     optional google.protobuf.Struct additional_data = 9;
-    google.protobuf.StringValue execution_id = 10;
+    optional google.protobuf.StringValue execution_id = 10;
   }
 
   Context context = 1;
