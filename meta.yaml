@@ -2,5 +2,5 @@ name: cx-api-xdr-ingestion
 CX_PRODUCT: apis
 deployable_type: library
 code_language: protobuf
-tests: false
+tests: true
 publish: false
