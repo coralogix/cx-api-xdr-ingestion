@@ -36,7 +36,7 @@ message GetExecutionStatusRequest {
 
 message GetExecutionStatusResponse {
   enum Status {
-    SLEEPING = 0;
+    IDLE = 0;
     READY = 1;
     IN_PROGRESS = 2;
   }
