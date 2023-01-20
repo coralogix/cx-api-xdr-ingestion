@@ -21,6 +21,10 @@ service SecurityReportIngestionService {
     option (audit_log_description).description = "Endpoint to check if the scan needs to run";
   }
 
+  rpc GetManualExecutionStatus(GetManualExecutionRequest) returns (GetExecutionStatusResponse) {
+    option (audit_log_description).description = "Endpoint to check if the scan needs to run";
+  }
+
 }
 
 message PostSecurityReportRequest {
@@ -29,6 +33,7 @@ message PostSecurityReportRequest {
 
 message PostSecurityReportResponse {}
 
+message GetManualExecutionRequest {}
 
 message GetExecutionStatusRequest {
   google.protobuf.StringValue provider = 1;
