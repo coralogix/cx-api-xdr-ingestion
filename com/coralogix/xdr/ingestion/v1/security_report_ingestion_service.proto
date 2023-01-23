@@ -22,7 +22,7 @@ service SecurityReportIngestionService {
   }
 
   rpc GetManualExecutionStatus(GetManualExecutionRequest) returns (GetExecutionStatusResponse) {
-    option (audit_log_description).description = "Endpoint to check if the scan needs to run";
+    option (audit_log_description).description = "Endpoint to check if manual scan can run";
   }
 
 }
