@@ -21,7 +21,7 @@ service SecurityReportIngestionService {
     option (audit_log_description).description = "Endpoint to check if the scan needs to run";
   }
 
-  rpc GetManualExecutionStatus(GetManualExecutionRequest) returns (GetExecutionStatusResponse) {
+  rpc GetManualExecutionStatus(GetManualExecutionStatusRequest) returns (GetManualExecutionStatusResponse) {
     option (audit_log_description).description = "Endpoint to check if manual scan can run";
   }
 
@@ -33,7 +33,11 @@ message PostSecurityReportRequest {
 
 message PostSecurityReportResponse {}
 
-message GetManualExecutionRequest {}
+message GetManualExecutionStatusRequest {}
+
+message GetManualExecutionStatusResponse {
+  google.protobuf.BoolValue can_run = 1;
+}
 
 message GetExecutionStatusRequest {
   google.protobuf.StringValue provider = 1;

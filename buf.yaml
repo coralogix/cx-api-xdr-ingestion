@@ -4,6 +4,10 @@ deps:
 lint:
   use:
     - DEFAULT
+  except:
+    - ENUM_ZERO_VALUE_SUFFIX
+    - ENUM_VALUE_PREFIX
+    - RPC_REQUEST_RESPONSE_UNIQUE
 breaking:
   use:
     - WIRE
