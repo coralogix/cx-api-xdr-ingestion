@@ -36,7 +36,6 @@ message GetExecutionStatusResponse {
   enum Status {
     IDLE = 0;
     READY = 1;
-    IN_PROGRESS = 2;
   }
 
   Status status = 1;
