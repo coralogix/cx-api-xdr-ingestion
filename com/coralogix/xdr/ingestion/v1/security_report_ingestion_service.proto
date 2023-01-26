@@ -18,7 +18,7 @@ service SecurityReportIngestionService {
   }
 
   rpc GetExecutionStatus(GetExecutionStatusRequest) returns (GetExecutionStatusResponse) {
-    option (audit_log_description).description = "Endpoint to check if the scan needs to run";
+    option (audit_log_description).description = "Endpoint to check the actual execution status.";
   }
 }
 
