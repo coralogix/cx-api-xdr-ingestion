@@ -4,3 +4,4 @@ deployable_type: library
 code_language: protobuf
 tests: false
 publish: false
+lifecycle_status: production
