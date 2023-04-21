@@ -7,6 +7,7 @@ import "com/coralogix/xdr/ingestion/v1/security_report.proto";
 
 import "google/api/annotations.proto";
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
 
 service SecurityReportIngestionService {
   rpc PostSecurityReport(PostSecurityReportRequest) returns (PostSecurityReportResponse) {
@@ -19,6 +20,10 @@ service SecurityReportIngestionService {
 
   rpc GetExecutionStatus(GetExecutionStatusRequest) returns (GetExecutionStatusResponse) {
     option (audit_log_description).description = "Endpoint to check the actual execution status.";
+  }
+
+  rpc GetExecutionStatusWithDeactivations(GetExecutionStatusWithDeactivationsRequest) returns (GetExecutionStatusWithDeactivationsResponse) {
+    option (audit_log_description).description = "Endpoint to check the actual execution status with deactivation information.";
   }
 }
 
@@ -37,7 +42,48 @@ message GetExecutionStatusResponse {
     IDLE = 0;
     READY = 1;
   }
-
+  
   Status status = 1;
   optional google.protobuf.StringValue execution_id = 2;
+}
+
+message GetExecutionStatusWithDeactivationsRequest {
+  google.protobuf.StringValue provider = 1;
+}
+
+message GetExecutionStatusWithDeactivationsResponse {
+  
+  message Deactivation {
+    message RuleDeactivation {
+      google.protobuf.StringValue test_identity = 1;
+    }
+    message ResourceDeactivation {
+      google.protobuf.StringValue resource_id = 1;
+    }
+    message RuleAndResourceDeactivation {
+      google.protobuf.StringValue test_identity = 1;
+      google.protobuf.StringValue resource_id = 2;
+    }
+    message DeactivationDetails {
+      oneof value {
+        RuleDeactivation rule_deactivation = 1;
+        ResourceDeactivation resource_deactivation = 2;
+        RuleAndResourceDeactivation rule_and_resource_deactivation = 3;
+      }
+    }
+
+    DeactivationDetails details = 1;
+    google.protobuf.Timestamp deactivated_at = 2;  
+  }
+  
+  message Idle {}
+  message Ready {
+    google.protobuf.StringValue execution_id = 1;
+    repeated Deactivation deactivations = 2;
+  }
+
+  oneof status {
+    Idle idle = 1;
+    Ready ready = 2;
+  }
 }
