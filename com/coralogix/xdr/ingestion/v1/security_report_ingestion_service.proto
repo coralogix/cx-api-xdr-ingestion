@@ -35,6 +35,7 @@ message PostSecurityReportResponse {}
 
 message GetExecutionStatusRequest {
   google.protobuf.StringValue provider = 1;
+  google.protobuf.StringValue account = 2;
 }
 
 message GetExecutionStatusResponse {
