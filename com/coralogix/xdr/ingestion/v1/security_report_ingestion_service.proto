@@ -50,6 +50,7 @@ message GetExecutionStatusResponse {
 
 message GetExecutionStatusWithDeactivationsRequest {
   google.protobuf.StringValue provider = 1;
+  google.protobuf.StringValue account = 2;
 }
 
 message GetExecutionStatusWithDeactivationsResponse {
